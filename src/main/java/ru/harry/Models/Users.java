@@ -28,7 +28,7 @@ public abstract class Users {
     private String passwordHash;
     @Column(name = "PasswordSalt")
     private String passwordSalt;
-//    private Collection<Events> events;
+    private Collection<Events> events;
     public Users(){}
     public Users(int id){
         this.id = id;
@@ -44,7 +44,7 @@ public abstract class Users {
         this.passwordHash = passwordHash;
         this.passwordSalt = passwordSalt;
     }
-    public Users(String uId, String fullName, String email, String phone, String login, int fk_Role) {
+    Users(String uId, String fullName, String email, String phone, String login, int fk_Role) {
         this.uId = uId;
         this.fullName = fullName;
         this.email = email;
@@ -105,11 +105,11 @@ public abstract class Users {
     {    return id+ "\t| " + uId + "\t| " + fullName + "\t| " + email + "\t| " + phone +
             "\t| " + login+ "\t| " + fk_Role + "\t| " + passwordHash + "\t| " + passwordSalt +"\n";
     }
-//    public Collection<Events> getEvents()
-//    {   List<Events> list = new ArrayList<>();
-//        for (int i = 0; i < events.size(); i++) {
-//            list.add(new Events());
-//        }
-//        return list;
-//    }
+    public Collection<Events> getEvents()
+    {   List<Events> list = new ArrayList<>();
+        for (int i = 0; i < events.size(); i++) {
+            list.add(new Events());
+        }
+        return list;
+    }
 }
