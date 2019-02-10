@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.harry.Entity.UsersEntity" table="users" schema="webapiam">
+        <id name="idUser">
+            <column name="Id_User" sql-type="int(10)"/>
+        </id>
+        <property name="uid">
+            <column name="Uid" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="fullName">
+            <column name="FullName" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="email">
+            <column name="Email" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="Phone" sql-type="varchar(16)" length="16" not-null="true"/>
+        </property>
+        <property name="login">
+            <column name="Login" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="passwordHash">
+            <column name="PasswordHash" sql-type="varbinary(200)"/>
+        </property>
+        <property name="passwordSalt">
+            <column name="PasswordSalt" sql-type="varbinary(400)"/>
+        </property>
+    </class>
+</hibernate-mapping>

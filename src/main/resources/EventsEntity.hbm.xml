@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.harry.Entity.EventsEntity" table="events" schema="webapiam">
+        <id name="idEvent">
+            <column name="Id_Event" sql-type="int(10)"/>
+        </id>
+        <property name="uid">
+            <column name="Uid" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="evDate">
+            <column name="EvDate" sql-type="datetime(6)"/>
+        </property>
+        <property name="cost">
+            <column name="Cost" sql-type="decimal(6,2)" precision="6" scale="2"/>
+        </property>
+        <property name="comment">
+            <column name="Comment" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="status">
+            <column name="Status" sql-type="int(11)"/>
+        </property>
+    </class>
+</hibernate-mapping>
