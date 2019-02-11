@@ -19,8 +19,5 @@
         <mapping resource="ServiceEntity.hbm.xml"/>
         <mapping resource="UsersEntity.hbm.xml"/>
         <mapping class="ru.harry.Entity.UsersEntity"/>
-        <mapping resource="StatusEntity.hbm.xml"/>
-        <mapping class="ru.harry.Entity.StatusEntity"/>
-
     </session-factory>
 </hibernate-configuration>
