@@ -1,5 +1,7 @@
 package ru.harry.Entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -7,67 +9,28 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "service", schema = "webapiam"/*, catalog = ""*/)
+@Getter
+@Setter
 public class ServiceEntity {
-    private int idService;
-    private BigDecimal lat;
-    private BigDecimal lng;
-    private String title;
-    private Timestamp datePlace;
-    private String imageUrl;
-
     @Id
     @Column(name = "Id_Service", nullable = false)
-    public int getIdService() {
-        return idService;
-    }
-    public void setIdService(int idService) {
-        this.idService = idService;
-    }
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idService;
     @Basic
     @Column(name = "Lat", nullable = false, precision = 6)
-    public BigDecimal getLat() {
-        return lat;
-    }
-    public void setLat(BigDecimal lat) {
-        this.lat = lat;
-    }
-
+    private BigDecimal lat;
     @Basic
     @Column(name = "Lng", nullable = false, precision = 6)
-    public BigDecimal getLng() {
-        return lng;
-    }
-    public void setLng(BigDecimal lng) {
-        this.lng = lng;
-    }
-
+    private BigDecimal lng;
     @Basic
     @Column(name = "Title", nullable = false, length = 100)
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    private String title;
     @Basic
     @Column(name = "DatePlace", nullable = false)
-    public Timestamp getDatePlace() {
-        return datePlace;
-    }
-    public void setDatePlace(Timestamp datePlace) {
-        this.datePlace = datePlace;
-    }
-
+    private Timestamp datePlace;
     @Basic
     @Column(name = "ImageUrl", length = 100)
-    public String getImageUrl() {
-        return imageUrl;
-    }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+    private String imageUrl;
 
     @Override
     public boolean equals(Object o) {

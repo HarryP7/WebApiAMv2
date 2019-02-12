@@ -1,31 +1,23 @@
 package ru.harry.Entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "roles", schema = "webapiam"/*, catalog = ""*/)
+@Getter
+@Setter
 public class RolesEntity {
-    private int id;
-    private String name;
-
     @Id
     @Column(name = "Id", nullable = false)
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Basic
     @Column(name = "Name", nullable = false, length = 50)
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String name;
 
     @Override
     public boolean equals(Object o) {
@@ -35,13 +27,11 @@ public class RolesEntity {
         return id == that.id &&
                 Objects.equals(name, that.name);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
     }
     @Override
     public String toString()
-    {    return id+ "\t| " + name + "|";
-    }
+    {    return id+ "\t| " + name + "|";    }
 }

@@ -1,104 +1,45 @@
 package ru.harry.Entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "webapiam"/*, catalog = ""*/)
+@Getter
+@Setter
 public class UsersEntity {
-    private int idUser;
-    private String uid;
-    private String fullName;
-    private String email;
-    private String phone;
-    private String login;
-    private int fk_Role;
-    private byte[] passwordHash;
-    private byte[] passwordSalt;
-
     @Id
     @Column(name = "Id_User", nullable = false)
-    public int getIdUser() {
-        return idUser;
-    }
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUser;
     @Basic
     @Column(name = "Uid", nullable = false, length = 100)
-    public String getUid() {
-        return uid;
-    }
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
+    private String uid;
     @Basic
     @Column(name = "FullName", nullable = false, length = 100)
-    public String getFullName() {
-        return fullName;
-    }
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
+    private String fullName;
     @Basic
     @Column(name = "Email", length = 50)
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    private String email;
     @Basic
     @Column(name = "Phone", length = 16)
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    private String phone;
     @Basic
     @Column(name = "Login", length = 50)
-    public String getLogin() {
-        return login;
-    }
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
+    private String login;
     @Basic
     @Column(name = "Fk_Role", nullable = false)
-    public int getFk_Role() {
-        return fk_Role;
-    }
-    public void setFk_Role(int fk_Role) {
-        this.fk_Role = fk_Role;
-    }
-
+    private int fk_Role;
     @Basic
     @Column(name = "PasswordHash", nullable = false)
-    public byte[] getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(byte[] passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
+    private byte[] passwordHash;
     @Basic
     @Column(name = "PasswordSalt", nullable = false)
-    public byte[] getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(byte[] passwordSalt) {
-        this.passwordSalt = passwordSalt;
-    }
+    private byte[] passwordSalt;
 
     @Override
     public boolean equals(Object o) {
@@ -114,7 +55,6 @@ public class UsersEntity {
                 Arrays.equals(passwordHash, that.passwordHash) &&
                 Arrays.equals(passwordSalt, that.passwordSalt);
     }
-
     @Override
     public int hashCode() {
         int result = Objects.hash(idUser, uid, fullName, email, phone, login);
