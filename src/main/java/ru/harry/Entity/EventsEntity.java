@@ -31,7 +31,7 @@ public class EventsEntity {
     @Column(name = "Datev", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date evDate;
+    private Timestamp evDate;
     @Basic
     @Column(name = "Cost", nullable = false, precision = 2)
     private BigDecimal cost;
