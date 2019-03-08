@@ -26,9 +26,8 @@ public class EventsEntity {
     @Column(name = "Uid", nullable = false, length = 100)
     private String uid;
     @Basic
-    @Column(name = "Datev", nullable = false)
+    @Column(name = "Ev_Date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
     private Timestamp evDate;
     @Basic
     @Column(name = "Cost", nullable = false, precision = 2)
