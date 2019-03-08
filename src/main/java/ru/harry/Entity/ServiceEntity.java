@@ -15,7 +15,7 @@ public class ServiceEntity {
     @Id
     @Column(name = "Id_Service", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idService;
+    private Long idService;
     @Basic
     @Column(name = "Lat", nullable = false, precision = 6)
     private BigDecimal lat;
@@ -37,7 +37,7 @@ public class ServiceEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServiceEntity that = (ServiceEntity) o;
-        return idService == that.idService &&
+        return idService.equals(that.idService) &&
                 Objects.equals(lat, that.lat) &&
                 Objects.equals(lng, that.lng) &&
                 Objects.equals(title, that.title) &&

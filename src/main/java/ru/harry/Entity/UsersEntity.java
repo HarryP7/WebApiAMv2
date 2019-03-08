@@ -15,12 +15,12 @@ public class UsersEntity {
     @Id
     @Column(name = "Id_User", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private Long idUser;
     @Basic
     @Column(name = "Uid", nullable = false, length = 100)
     private String uid;
     @Basic
-    @Column(name = "FullName", nullable = false, length = 100)
+    @Column(name = "Full_Name", nullable = false, length = 100)
     private String fullName;
     @Basic
     @Column(name = "Email", length = 50)
@@ -46,7 +46,7 @@ public class UsersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UsersEntity that = (UsersEntity) o;
-        return idUser == that.idUser &&
+        return idUser.equals(that.idUser) &&
                 Objects.equals(uid, that.uid) &&
                 Objects.equals(fullName, that.fullName) &&
                 Objects.equals(email, that.email) &&

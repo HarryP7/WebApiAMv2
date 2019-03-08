@@ -6,8 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 /**
  * Simple JavaBean domain object that represents Events.
@@ -28,10 +26,9 @@ public class EventsEntity {
     @Column(name = "Uid", nullable = false, length = 100)
     private String uid;
     @Basic
-    @Column(name = "Datev", nullable = false)
+    @Column(name = "Ev_Date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date evDate;
+    private Timestamp evDate;
     @Basic
     @Column(name = "Cost", nullable = false, precision = 2)
     private BigDecimal cost;
