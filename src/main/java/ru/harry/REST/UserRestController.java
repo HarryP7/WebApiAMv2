@@ -9,33 +9,34 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.harry.Entity.EventsEntity;
-import ru.harry.Service.EventsService;
+import ru.harry.Entity.UsersEntity;
+import ru.harry.Service.UsersService;
+
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * REST controller for {@link EventsEntity} connected requests.
+ * REST controller for {@link UsersEntity} connected requests.
  * @author HarryPC
  * @version 1.0
  */
 
 @RestController
-@RequestMapping("/api/events/")
-public class EventsRestController {
-    private static final Logger log = LoggerFactory.getLogger(EventsRestController.class);
+@RequestMapping("/api/users/")
+public class UserRestController {
+    private static final Logger log = LoggerFactory.getLogger(UserRestController.class);
 
-    private final EventsService eventsService;
+    private final UsersService usersService;
 
     @Autowired
-    public EventsRestController(EventsService eventsService) {
-        this.eventsService = eventsService;
+    public UserRestController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<EventsEntity>> getAllEvents() {
-        log.info("IN EventsService getAll");
-        List events = this.eventsService.getAll();
+    public ResponseEntity<List<UsersEntity>> getAllUsers() {
+        log.info("IN UsersService getAll");
+        List events = this.usersService.getAll();
         if (events.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -43,12 +44,12 @@ public class EventsRestController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<EventsEntity> getEvent(@PathVariable("id") Long id) {
-        log.info("IN EventsService getById {}", id);
+    public ResponseEntity<UsersEntity> getUser(@PathVariable("id") Long id) {
+        log.info("IN UsersService getById {}", id);
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        EventsEntity entity = (EventsEntity) this.eventsService.getById(id);
+        UsersEntity entity = (UsersEntity) this.usersService.getById(id);
 
         if (entity == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -57,38 +58,37 @@ public class EventsRestController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<EventsEntity> insertEvent(@RequestBody @Valid EventsEntity events) {
-        log.info("IN EventsService insert {}", events);
+    public ResponseEntity<UsersEntity> insertUser(@RequestBody @Valid UsersEntity users) {
+        log.info("IN UsersService insert {}", users);
         HttpHeaders headers = new HttpHeaders();
-
-        if (events == null) {
+        if (users == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        this.eventsService.save(events);
-        return new ResponseEntity<>(events, headers, HttpStatus.CREATED);
+        this.usersService.save(users);
+        return new ResponseEntity<>(users, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<EventsEntity> updateEvent(@RequestBody @Valid EventsEntity events, UriComponentsBuilder builder) {
-        log.info("IN EventsService update {}", events);
+    public ResponseEntity<UsersEntity> updateUser(@RequestBody @Valid UsersEntity user, UriComponentsBuilder builder) {
+        log.info("IN UsersService update {}", user);
         HttpHeaders headers = new HttpHeaders();
 
-        if (events == null) {
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        this.eventsService.save(events);
-        return new ResponseEntity<>(events, headers, HttpStatus.OK);
+        this.usersService.save(user);
+        return new ResponseEntity<>(user, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<EventsEntity> deleteCustomer(@PathVariable("id") Long id) {
-        log.info("IN EventsServiceImpl delete {}", id);
-        EventsEntity events = (EventsEntity) this.eventsService.getById(id);
+    public ResponseEntity<UsersEntity> deleteUser(@PathVariable("id") Long id) {
+        log.info("IN UsersService delete {}", id);
+        UsersEntity events = (UsersEntity) this.usersService.getById(id);
 
         if (events == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        this.eventsService.delete(id);
+        this.usersService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
